@@ -1,0 +1,25 @@
+<h1 mat-dialog-title> <strong>{{action}}</strong> </h1>
+<div mat-dialog-content class="form-group">
+   
+        <!-- <input placeholder="which category you want to sort by?" matInput [(ngModel)]="local_data.category"> -->
+
+        <mat-form-field appearance="fill" >
+            <mat-label>by which category to sort</mat-label>
+            <mat-select required #cat="ngModel" [(ngModel)]="local_data.category" >
+              <mat-option disabled value="option">choose category</mat-option>
+              <mat-option value="Food">Food</mat-option>
+              <mat-option value="Vacation">Vacation</mat-option>
+              <mat-option value="Restaurant">Restaurant</mat-option>
+              <mat-option value="Electricity">Electricity</mat-option>
+            </mat-select>
+
+    </mat-form-field>
+    
+
+<div mat-dialog-actions>
+    <button [disabled]="!(cat.valid)" mat-button (click)="doAction()">{{action}}</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>
+<br>
+
+<p></p>

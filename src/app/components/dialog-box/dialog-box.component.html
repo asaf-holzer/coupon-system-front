@@ -1,0 +1,34 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Action Form <strong>{{action}}</strong></h1>
+
+<div mat-dialog-content class="form-group">
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+        <input [formControl]="name1" required placeholder="{{action}} Name" matInput
+            [(ngModel)]="local_data.name">
+        <mat-error *ngIf="name1.invalid">{{getErrorMessageName()}}</mat-error>
+        <!--         <mat-error *ngIf="name.errors.pattern">must start with capital letter </mat-error> -->
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'" appearance="fill">
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="{{action}} your email" [formControl]="email" [(ngModel)]="local_data.email"
+            required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="action != 'Delete'">
+        <input required minlength="4" type="password" placeholder="{{action}} password" matInput [formControl]="pass"
+            [(ngModel)]="local_data.password">
+        <mat-error *ngIf="pass.invalid">{{getErrorMessagePass()}}</mat-error>
+    </mat-form-field>
+    <ng-template #elseTemplate>
+        Sure to delete <b>{{local_data.name}}</b>?
+    </ng-template>
+</div>
+<div mat-dialog-actions>
+    <button *ngIf="action != 'Delete'; else elseTemplate2" [disabled]="!(email.valid && pass.valid && name1.valid)"
+        mat-button (click)="doAction()">{{action}}</button>
+    <ng-template #elseTemplate2>
+        <button mat-button (click)="doAction()">{{action}}</button>
+    </ng-template>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

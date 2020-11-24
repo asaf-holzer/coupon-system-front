@@ -1,0 +1,93 @@
+<h1 mat-dialog-title><strong>Login Form </strong></h1>
+
+<div class="form-group">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Enter your email</mat-label>
+        <input [(ngModel)]="email1" matInput placeholder="Enter your email" ngDefaultControl [formControl]="email"
+            required>
+           
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input minlength="4" required [formControl]="pass" id="2" [(ngModel)]="password" matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="email.invalid">{{getErrorMessagePass()}}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+        <mat-label>Select your type</mat-label>
+        <mat-select [formControl]="typeClient" required [(ngModel)]="client">
+            <mat-option disabled value="option">choose your status</mat-option>
+            <mat-option value="admin">admin</mat-option>
+            <mat-option value="company">company</mat-option>
+            <mat-option value="customer">customer</mat-option>
+        </mat-select>
+        <mat-error *ngIf="email.invalid">{{getErrorMessageType()}}</mat-error>
+        
+    </mat-form-field>
+    <br>
+    <div mat-dialog-actions>
+        <button mat-button (click)="doAction()" [disabled]="!(email.valid && pass.valid && typeClient.valid)"
+            routerLinkActive="router-link-active">Login</button>
+
+        <button mat-button (click)="closeDialog()" [routerLink]="['/home']" routerLinkActive="router-link-active"
+            mat-flat-button color="warn">Cancel</button>
+
+    </div>
+    
+
+    <!-- [disabled]="inputIsEmpty() ? 'disabled': null"  -->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div>
+
+    <mat-form-field  appearance="fill">
+        <mat-label>Enter your email</mat-label>
+        <input [(ngModel)]="email1"  matInput placeholder="Enter your email" ngDefaultControl [formControl]="email" 
+            required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+</div>
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input  id= "2" [(ngModel)]="password" matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+
+</div>
+
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Select</mat-label>
+        <mat-select  id= "3" [(ngModel)]="client">
+            <mat-option disabled value="option">choose your status</mat-option>
+            <mat-option value="admin">admin</mat-option>
+            <mat-option value="company">company</mat-option>
+            <mat-option value="customer">customer</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div> -->

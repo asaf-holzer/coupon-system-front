@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>Action Form <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+    <mat-form-field *ngIf="action != 'Delete'; else elseTemplate">
+        <input required [formControl]="cid" placeholder="{{action}} company id" matInput [(ngModel)]="local_data.companyID">
+        <mat-error *ngIf="cid.invalid">{{requiredField()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'">
+       <!--  <input placeholder="{{action}} category" matInput [(ngModel)]="local_data.category"> -->
+       <mat-form-field appearance="fill" >
+        <mat-label>{{action}} category</mat-label>
+        <mat-select required [formControl]="cat"  [(ngModel)]="local_data.category" >
+          <mat-option disabled value="option">choose your status</mat-option>
+          <mat-option value="Food">Food</mat-option>
+          <mat-option value="Vacation">Vacation</mat-option>
+          <mat-option value="Restaurant">Restaurant</mat-option>
+          <mat-option value="Electricity">Electricity</mat-option>
+        </mat-select>
+        <mat-error *ngIf="cat.invalid">{{requiredField()}}</mat-error>
+    </mat-form-field>
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'">
+        <input required [formControl]="title" placeholder="{{action}} title" matInput [(ngModel)]="local_data.title">
+        <mat-error *ngIf="title.invalid">{{requiredField()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'">
+        <input required [formControl]="desc" placeholder="{{action}} description" matInput [(ngModel)]="local_data.description">
+        <mat-error *ngIf="desc.invalid">{{requiredField()}}</mat-error> 
+    </mat-form-field>
+    
+    <mat-form-field *ngIf="action != 'Delete'" >
+        <input required [formControl]="sdate" type="date" placeholder="{{action}} start date" matInput [(ngModel)]="local_data.startDate">
+        <mat-error *ngIf="sdate.invalid">{{requiredField()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'">
+        <input  required [formControl]="edate" type="date" placeholder="{{action}} end date" matInput [(ngModel)]="local_data.endDate">
+        <mat-error *ngIf="edate.invalid">{{requiredField()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'">
+        <input required [formControl]="amount" placeholder="{{action}} amount" matInput [(ngModel)]="local_data.amount">
+        <mat-error *ngIf="amount.invalid">{{requiredFieldAmount()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'">
+        <input required [formControl]="price" placeholder="{{action}} price" matInput [(ngModel)]="local_data.price">
+        <mat-error *ngIf="price.invalid">{{requiredFieldPrice()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field *ngIf="action != 'Delete'">
+        <input required [formControl]="image" placeholder="{{action}} image" matInput [(ngModel)]="local_data.image">
+        <mat-error *ngIf="image.invalid">{{requiredField()}}</mat-error>
+    </mat-form-field>
+    <ng-template #elseTemplate>
+        Sure to delete <b>{{local_data.firstName+" "+local_data.lastName}}</b>?
+    </ng-template>
+    
+</div>
+<div mat-dialog-actions>
+    <button [disabled]="!(cid.valid && cat.valid && title.valid && desc.valid && sdate.valid && edate.valid && amount.valid && price.valid && image.valid)"  mat-button (click)="doAction()">{{action}}</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>

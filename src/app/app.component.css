@@ -1,0 +1,34 @@
+section{
+    margin: 0;
+    height: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 18% 16% 61% 5%;
+    grid-template-columns: repeat(12 1fr);
+}
+
+header{
+    
+    grid-column: span 12;
+}   
+
+aside{
+    grid-row: 100%;
+    grid-column: span 12;
+    
+}
+
+main{
+    grid-row: 100%;
+    grid-column: span 12;
+} 
+
+footer{
+    grid-row: 100%;
+    grid-column: span 12;
+   
+    
+    
+}
+

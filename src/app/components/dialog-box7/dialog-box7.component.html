@@ -1,0 +1,17 @@
+<h1 mat-dialog-title> <strong>{{action}}</strong> </h1>
+<div mat-dialog-content>
+   
+        <!-- <input placeholder="which category you want to sort by?" matInput [(ngModel)]="local_data.category"> -->
+
+        <mat-form-field >
+            <input required #max="ngModel" placeholder="{{action}} price" matInput [(ngModel)]="local_data.maxPrice">
+        </mat-form-field>
+
+        
+
+<div mat-dialog-actions>
+    <button [disabled] ="!max.valid" mat-button (click)="doAction()">{{action}}</button>
+    <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>
+<br>
+<p></p>
