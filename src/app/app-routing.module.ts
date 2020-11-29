@@ -18,28 +18,32 @@ import { Routes, RouterModule } from '@angular/router';
 import { OneCustomerComponent } from './components/one-customer/one-customer.component';
 import { CustomerCouponsCatComponent } from './components/customer-coupons-cat/customer-coupons-cat.component';
 import { CustomerCouponsMaxComponent } from './components/customer-coupons-max/customer-coupons-max.component';
+import { AdminGuardGuard } from './services/adminGuard.guard';
+import { CompanyGuardGuard } from './services/companyGuard.guard';
+import { CustomerGuardGuard } from './services/customerGuard.guard';
+
 
 const routes: Routes = [
-  { path: 'home', component:MainComponent},
-  { path: 'login', component:LoginComponent},
-  { path: 'admin', component: AdminComponent},
-  { path: 'admin/company', component: CompanyListComponent},
-  { path: 'admin/customer', component: CustomerListComponent},
-  { path: 'admin/getOneCompany', component:OneCompanyComponent},
-  { path: 'admin/getOneCustomer', component:OneCustomerComponent},
-  { path: 'company', component:CompanyComponent},
-  { path: 'company/get-company-coupons', component: CompanycouponsComponent},
-  { path: 'company/get-company-coupons-category', component: CompanyCouponsCatComponent},
-  { path: 'company/get-company-coupons-max-price', component: CompanyCouponsMaxComponent},
-  { path: 'company/get-company-details', component: CompanyDetailsComponent},
-  { path: 'customer', component: CustomerComponent},
-  { path: 'customer/get-customer-coupons', component:CustomercouponsComponent},
-  { path: 'customer/get-customer-coupons-category', component:CustomerCouponsCatComponent},
-  { path: 'customer/get-customer-coupons-max-price', component:CustomerCouponsMaxComponent},
-  { path: 'customer/get-all-coupons', component:AllCouponsComponent},
-  { path: 'customer/get-customer-details', component: CustomerDetailsComponent},
-  { path: ' ', component: MainComponent, pathMatch:'full'},
-  { path: '**', component: MainComponent, pathMatch:'full'}
+  { path: 'home', component: MainComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuardGuard] },
+  { path: 'admin/company', component: CompanyListComponent, canActivate: [AdminGuardGuard] },
+  { path: 'admin/customer', component: CustomerListComponent, canActivate: [AdminGuardGuard] },
+  { path: 'admin/getOneCompany', component: OneCompanyComponent, canActivate: [AdminGuardGuard] },
+  { path: 'admin/getOneCustomer', component: OneCustomerComponent, canActivate: [AdminGuardGuard] },
+  { path: 'company', component: CompanyComponent, canActivate: [CompanyGuardGuard] },
+  { path: 'company/get-company-coupons', component: CompanycouponsComponent, canActivate: [CompanyGuardGuard] },
+  { path: 'company/get-company-coupons-category', component: CompanyCouponsCatComponent, canActivate: [CompanyGuardGuard] },
+  { path: 'company/get-company-coupons-max-price', component: CompanyCouponsMaxComponent, canActivate: [CompanyGuardGuard] },
+  { path: 'company/get-company-details', component: CompanyDetailsComponent, canActivate: [CompanyGuardGuard] },
+  { path: 'customer', component: CustomerComponent, canActivate: [CustomerGuardGuard] },
+  { path: 'customer/get-customer-coupons', component: CustomercouponsComponent, canActivate: [CustomerGuardGuard] },
+  { path: 'customer/get-customer-coupons-category', component: CustomerCouponsCatComponent, canActivate: [CustomerGuardGuard] },
+  { path: 'customer/get-customer-coupons-max-price', component: CustomerCouponsMaxComponent, canActivate: [CustomerGuardGuard] },
+  { path: 'customer/get-all-coupons', component: AllCouponsComponent, canActivate: [CustomerGuardGuard] },
+  { path: 'customer/get-customer-details', component: CustomerDetailsComponent, canActivate: [CustomerGuardGuard] },
+  { path: ' ', component: MainComponent, pathMatch: 'full' },
+  { path: '**', component: MainComponent, pathMatch: 'full' }
 ];
 
 @NgModule({

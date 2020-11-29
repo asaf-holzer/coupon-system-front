@@ -1,3 +1,5 @@
+
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -50,8 +52,12 @@ import { CustomerCouponsMaxComponent } from './components/customer-coupons-max/c
 import { DialogBoxLogoutComponent } from './components/dialog-box-logout/dialog-box-logout.component';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
-
-
+import { AdminGuardGuard } from './services/adminGuard.guard';
+import { AdminGuardService } from './services/adminGuard.service';
+import { CompanyGuardGuard } from './services/companyGuard.guard';
+import { CompanyGuardService } from './services/companyGuard.service';
+import { CustomerGuardGuard } from './services/customerGuard.guard';
+import { CustomerGuardService } from './services/customerGuard.service';
 
 @NgModule({
   declarations: [
@@ -111,7 +117,15 @@ import { CustomerDetailsComponent } from './components/customer-details/customer
     MatSelectModule
 
   ],
-  providers: [],
+
+providers: [
+  AdminGuardGuard,
+  AdminGuardService,
+  CompanyGuardGuard,
+  CompanyGuardService,
+  CustomerGuardGuard,
+  CustomerGuardService
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
