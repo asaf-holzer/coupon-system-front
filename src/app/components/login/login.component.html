@@ -6,8 +6,11 @@
         <mat-label>Enter your email</mat-label>
         <input [(ngModel)]="email1" matInput placeholder="Enter your email" ngDefaultControl [formControl]="email"
             required>
-           
+            <button mat-icon-button matSuffix >
+            <mat-icon [hidden]="true">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button> 
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+
     </mat-form-field>
     <br>
     <mat-form-field appearance="fill">
@@ -28,6 +31,9 @@
             <mat-option value="company">company</mat-option>
             <mat-option value="customer">customer</mat-option>
         </mat-select>
+        <button mat-icon-button matSuffix >
+            <mat-icon [hidden]="true">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button> 
         <mat-error *ngIf="email.invalid">{{getErrorMessageType()}}</mat-error>
         
     </mat-form-field>
